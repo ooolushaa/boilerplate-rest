@@ -1,0 +1,30 @@
+{
+  "presets": [
+    "next/babel"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "inline-dotenv"
+      ]
+    },
+    "production": {
+      "plugins": ["transform-inline-environment-variables"]
+    }
+  },
+  "plugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": false
+      }
+    ],
+    [
+      "inline-import",
+      {
+        "extensions": [".css"]
+      }
+    ]
+  ]
+}
