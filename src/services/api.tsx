@@ -1,13 +1,10 @@
 import axios from 'axios';
-import https from 'https';
 import { notification, Icon } from 'antd';
 import { API_ROOT } from '../config/config';
 
-export const setAxiosSettings = (token) => {
+export const setAxiosSettings = (token: string | null) => {
   axios.defaults.baseURL = API_ROOT;
   axios.defaults.headers.Accept = 'application/json';
-
-  process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0; // hack with backend ssl
 
   if (token) {
     axios.defaults.headers.Authorization = `Bearer ${token}`;
@@ -16,22 +13,22 @@ export const setAxiosSettings = (token) => {
   }
 };
 
-export const showBackendErrorNotificationTitle = err => {
+export const showBackendErrorNotificationTitle = (error: string) => {
   notification.open({
-    message: err,
+    message: error,
     icon: <Icon type="frown-o" style={{ color: '#e74c3c' }} />,
   });
 };
 
-export const showBackendErrorNotification = err => {
+export const showBackendErrorNotification = (error: string) => {
   notification.open({
     message: 'Whoops',
-    description: err,
+    description: error,
     icon: <Icon type="frown-o" style={{ color: '#e74c3c' }} />,
   });
 };
 
-export const showSuccessNotification = message => {
+export const showSuccessNotification = (message: string) => {
   notification.open({
     message: 'Success',
     description: message,
